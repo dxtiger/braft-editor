@@ -4957,12 +4957,16 @@ function (_React$Component) {
     defineProperty_default()(assertThisInitialized_default()(_this), "show", function () {
       _this.setState({
         active: true
+      }, function () {
+        _this.props.onClick(_this.state.active);
       });
     });
 
     defineProperty_default()(assertThisInitialized_default()(_this), "hide", function () {
       _this.setState({
         active: false
+      }, function () {
+        _this.props.onClick(_this.state.active);
       });
     });
 
@@ -5231,13 +5235,13 @@ function (_React$Component) {
       var caption = external_react_default.a.createElement("i", {
         className: "bfi-link"
       });
-      var hookReturns = this.props.hooks("open-link");
+
+      var hookReturns = this.props.hooks("open-link") || function () {};
+
       return external_react_default.a.createElement(ControlGroup, null, external_react_default.a.createElement(DropDown_DropDown, {
         key: 0,
         caption: caption,
-        onClick: function onClick() {
-          hookReturns && hookReturns();
-        },
+        onClick: hookReturns,
         title: this.props.language.controls.link,
         autoHide: true,
         getContainerNode: this.props.getContainerNode,

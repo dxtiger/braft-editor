@@ -148,10 +148,14 @@ export default class DropDown extends React.Component {
   };
 
   show = () => {
-    this.setState({ active: true });
+    this.setState({ active: true }, () => {
+      this.props.onClick && this.props.onClick(this.state.active);
+    });
   };
 
   hide = () => {
-    this.setState({ active: false });
+    this.setState({ active: false }, () => {
+      this.props.onClick && this.props.onClick(this.state.active);
+    });
   };
 }

@@ -49,16 +49,14 @@ export default class LinkEditor extends React.Component {
     const { allowInsertLinkText } = this.props;
     const { text, href, target, textSelected } = this.state;
     const caption = <i className="bfi-link"></i>;
-    const hookReturns = this.props.hooks("open-link");
+    const hookReturns = this.props.hooks("open-link") || (() => {});
 
     return (
       <ControlGroup>
         <DropDown
           key={0}
           caption={caption}
-          onClick={() => {
-            hookReturns && hookReturns();
-          }}
+          onClick={hookReturns}
           title={this.props.language.controls.link}
           autoHide={true}
           getContainerNode={this.props.getContainerNode}
